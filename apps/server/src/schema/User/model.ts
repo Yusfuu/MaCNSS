@@ -1,4 +1,4 @@
-import { Role, LicenseType } from '@ts/enums';
+import { IDocument } from '@schema/Document/model';
 import { Schema, model } from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
@@ -6,12 +6,11 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  phone: string;
   cin: string;
-  score: number;
-  role: Role;
-  licenseType: LicenseType;
-  createdAt: string;
+  city: string;
+  address: string;
+  phone: string;
+  documents: IDocument[];
 }
 
 // 2. Create a Schema corresponding to the document interface.
@@ -19,20 +18,8 @@ const schema = new Schema<IUser>(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    phone: { type: String, required: true },
     cin: { type: String, required: true },
-    role: {
-      type: String,
-      required: true,
-      enum: Role,
-      default: Role.USER,
-    },
-    licenseType: {
-      type: String,
-      required: true,
-      enum: LicenseType,
-    },
-    score: { type: Number, default: 0 },
+    documents: [{ type: Schema.Types.ObjectId, ref: 'Document' }],
   },
   { timestamps: true }
 );

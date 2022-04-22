@@ -1,12 +1,11 @@
 import { Request } from 'express';
 import { dataloader } from '@middlewares/loader';
 import { verifyJWT } from '@lib/jwt';
-import { IUser } from '@models/User';
 
 export interface Context {
   req: Request;
   dataloader: typeof dataloader;
-  user: IUser;
+  user: any;
 }
 
 export const context = async ({ req }: { req: Request }): Promise<Context> => {

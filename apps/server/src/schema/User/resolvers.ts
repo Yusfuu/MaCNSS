@@ -1,18 +1,25 @@
-import type { Resolvers } from "@generated/types";
-import { generateJWT } from "@lib/jwt";
-import { User, IUser } from "@models/index";
-import { AuthenticationError } from "apollo-server-core";
-import { hash, compare } from "bcrypt";
+import type { Resolvers } from '@generated/types';
+import { User } from './model';
 
 export const resolvers: Resolvers = {
-  Query: {
-    Users: async (_, __) => {
-      return await User.find();
-    },
-  },
+  Query: {},
   Mutation: {
-    submitData: async (_, { input }) => {
-      const user: IUser = await User.create(input);
+    createUser: async (_, { input }) => {
+      const { name, email, cin, city, address, phone } = input;
+
+      const user = await User.create({
+        name,
+        email,
+        cin,
+        city,
+        address,
+        phone,
+      });
+
+      return user;
+    },
+    deleteUser: async (_, { id }) => {
+      const user = await User.findByIdAndDelete(id);
       return user;
     },
   },

@@ -1,15 +1,17 @@
 export enum Role {
-  USER = "USER",
-  ADMIN = "ADMIN",
-}
-export enum LicenseType {
-  A = "A",
-  B = "B",
+  USER = 'USER',
+  ADMIN = 'ADMIN',
 }
 
-export enum Mimetype {
-  JPEG = "image/jpeg",
-  PNG = "image/png",
-  GIF = "image/gif",
-  WEBP = "image/webp",
+export enum DocumentStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}
+
+export enum RefundType {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
 }
