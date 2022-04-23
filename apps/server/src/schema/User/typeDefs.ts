@@ -10,6 +10,7 @@ export const typeDefs = gql`
     city: String!
     address: String!
     phone: String!
+    documents: [Document]
   }
 
   input UserInput {

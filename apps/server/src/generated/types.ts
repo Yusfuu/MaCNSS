@@ -178,6 +178,7 @@ export type User = {
   address: Scalars['String'];
   cin: Scalars['String'];
   city: Scalars['String'];
+  documents?: Maybe<Array<Maybe<Document>>>;
   email: Scalars['String'];
   id: Scalars['ID'];
   name: Scalars['String'];
@@ -357,6 +358,7 @@ export type UserResolvers<ContextType = Context, ParentType extends ResolversPar
   address?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   cin?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   city?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  documents?: Resolver<Maybe<Array<Maybe<ResolversTypes['Document']>>>, ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
