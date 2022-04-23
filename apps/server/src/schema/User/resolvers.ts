@@ -7,6 +7,10 @@ export const resolvers: Resolvers = {
       const users = await User.find();
       return users;
     },
+    user: async (_, { id }) => {
+      const user = await User.findById(id);
+      return user;
+    },
   },
   Mutation: {
     createUser: async (_, { input }) => {
