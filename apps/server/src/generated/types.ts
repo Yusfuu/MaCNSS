@@ -69,6 +69,7 @@ export type Mutation = {
   updateAgent?: Maybe<Agent>;
   updateDocument?: Maybe<Document>;
   updateMedication?: Maybe<Medication>;
+  updateUser?: Maybe<User>;
 };
 
 
@@ -138,6 +139,12 @@ export type MutationUpdateDocumentArgs = {
 export type MutationUpdateMedicationArgs = {
   id: Scalars['ID'];
   input: MedicationInput;
+};
+
+
+export type MutationUpdateUserArgs = {
+  id: Scalars['ID'];
+  input: UserInput;
 };
 
 export type Query = {
@@ -333,6 +340,7 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   updateAgent?: Resolver<Maybe<ResolversTypes['Agent']>, ParentType, ContextType, RequireFields<MutationUpdateAgentArgs, 'id'>>;
   updateDocument?: Resolver<Maybe<ResolversTypes['Document']>, ParentType, ContextType, RequireFields<MutationUpdateDocumentArgs, 'id'>>;
   updateMedication?: Resolver<Maybe<ResolversTypes['Medication']>, ParentType, ContextType, RequireFields<MutationUpdateMedicationArgs, 'id' | 'input'>>;
+  updateUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'id' | 'input'>>;
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

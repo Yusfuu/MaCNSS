@@ -22,5 +22,19 @@ export const resolvers: Resolvers = {
       const user = await User.findByIdAndDelete(id);
       return user;
     },
+    updateUser: async (_, { id, input }) => {
+      const { name, email, cin, city, address, phone } = input;
+
+      const user = await User.findByIdAndUpdate(id, {
+        name,
+        email,
+        cin,
+        city,
+        address,
+        phone,
+      });
+
+      return user;
+    },
   },
 };
