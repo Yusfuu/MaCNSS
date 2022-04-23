@@ -22,7 +22,7 @@ export const typeDefs = gql`
 
   type Mutation {
     createDocument(user: ID!, medication: [ID!]!): Document
-    updateDocumentStatus(id: ID!, status: DocumentStatus): Document
+    updateDocumentStatus(id: ID!, status: DocumentStatus!): Document
     deleteDocument(id: ID!): Document
   }
 `;

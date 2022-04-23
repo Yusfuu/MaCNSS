@@ -1,5 +1,7 @@
 import DataLoader from 'dataloader';
 import { Model } from 'mongoose';
+import { User } from '@schema/User/model';
+import { Medication } from '@schema/Medication/model';
 
 // create a dataloader for the given model
 export const createLoader = (Model: Model<any>) => {
@@ -18,4 +20,7 @@ export const createLoader = (Model: Model<any>) => {
   };
 };
 
-export const dataloader = {};
+export const dataloader = {
+  user: createLoader(User),
+  medication: createLoader(Medication),
+};
