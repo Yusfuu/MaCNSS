@@ -20,6 +20,9 @@ const schema = new Schema<IUser>(
     email: { type: String, required: true, unique: true },
     cin: { type: String, required: true },
     documents: [{ type: Schema.Types.ObjectId, ref: 'Document' }],
+    city: { type: String, required: true },
+    address: { type: String, required: true },
+    phone: { type: String, required: true },
   },
   { timestamps: true }
 );

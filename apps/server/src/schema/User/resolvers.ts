@@ -2,7 +2,12 @@ import type { Resolvers } from '@generated/types';
 import { User } from './model';
 
 export const resolvers: Resolvers = {
-  Query: {},
+  Query: {
+    users: async () => {
+      const users = await User.find();
+      return users;
+    },
+  },
   Mutation: {
     createUser: async (_, { input }) => {
       const { name, email, cin, city, address, phone } = input;

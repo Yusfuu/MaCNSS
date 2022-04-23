@@ -7,16 +7,22 @@ const schema = applyMiddleware(gql, permissions);
 
 bootstrap(schema);
 
-// import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
+import { User } from '@schema/User/model';
 
-// const fakeUser = () => ({
-//   name: faker.name.findName(),
-//   email: faker.internet.email(),
-//   cin: faker.random.number(),
-//   city: faker.address.city(),
-//   address: faker.address.streetAddress(),
-//   phone: faker.phone.phoneNumber(),
-// });
+const fakeUser = () => ({
+  name: faker.name.findName(),
+  email: faker.internet.email(),
+  cin: faker.finance.bic(),
+  city: faker.address.city(),
+  address: faker.address.streetAddress(),
+  phone: faker.phone.phoneNumberFormat(),
+});
+
+// User.create(fakeUser());
+
+// delete all users
+// User.remove({});
 
 // // generate fake medication
 // const fakeMedication = () => {
@@ -27,3 +33,12 @@ bootstrap(schema);
 //   };
 //   return medication;
 // };
+
+// const insert = async () => {
+//   // insert 10 users
+//   for (let i = 0; i < 10; i++) {
+//     await User.create(fakeUser());
+//   }
+// };
+
+// insert();
