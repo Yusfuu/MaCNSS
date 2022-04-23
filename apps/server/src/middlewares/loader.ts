@@ -13,7 +13,8 @@ export const createLoader = (Model: Model<any>) => {
   return {
     load: async (id: unknown) => loader.load(id),
     loadMany: async (ids: ArrayLike<unknown>) => loader.loadMany(ids),
-    clear: (id) => loader.clear(id),
+    clear: (id: string) => loader.clear(id),
+    clearAll: () => loader.clearAll(),
   };
 };
 
