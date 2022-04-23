@@ -9,6 +9,7 @@ bootstrap(schema);
 
 import { faker } from '@faker-js/faker';
 import { User } from '@schema/User/model';
+import { Medication } from '@schema/Medication/model';
 
 const fakeUser = () => ({
   name: faker.name.findName(),
@@ -19,26 +20,24 @@ const fakeUser = () => ({
   phone: faker.phone.phoneNumberFormat(),
 });
 
-// User.create(fakeUser());
-
-// delete all users
-// User.remove({});
-
 // // generate fake medication
-// const fakeMedication = () => {
-//   const medication = {
-//     name: faker.name.findName(),
-//     price: faker.commerce.price(),
-//     refundable: faker.random.boolean(),
-//   };
-//   return medication;
-// };
+const fakeMedication = () => {
+  const medication = {
+    name: faker.lorem.slug(),
+    price: faker.commerce.price(100, 200, 2),
+    refundable: faker.datatype.boolean(),
+  };
+  return medication;
+};
 
-// const insert = async () => {
-//   // insert 10 users
-//   for (let i = 0; i < 10; i++) {
-//     await User.create(fakeUser());
-//   }
-// };
+const insert = async () => {
+  await Promise.all([User.remove({}), Medication.remove({})]);
+  // insert 10 users
+  const data = [];
+  for (let i = 0; i < 10; i++) {
+    data.push(User.create(fakeUser()), Medication.create(fakeMedication()));
+  }
+  await Promise.all(data);
+};
 
 // insert();
