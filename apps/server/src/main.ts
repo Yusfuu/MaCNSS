@@ -7,7 +7,7 @@ const schema = applyMiddleware(gql, permissions);
 
 bootstrap(schema);
 
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
 // const fakeUser = () => ({
 //   name: faker.name.findName(),
