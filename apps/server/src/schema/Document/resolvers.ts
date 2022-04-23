@@ -17,5 +17,13 @@ export const resolvers: Resolvers = {
       const document = await Document.create({ user, medication });
       return document;
     },
+    deleteDocument: async (_, { id }) => {
+      const document = await Document.findByIdAndDelete(id);
+      return document;
+    },
+    updateDocument: async (_, { id, status }) => {
+      const document = await Document.findByIdAndUpdate(id, { status });
+      return document;
+    },
   },
 };

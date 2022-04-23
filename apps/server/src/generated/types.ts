@@ -67,7 +67,7 @@ export type Mutation = {
   deleteUser?: Maybe<User>;
   login: AuthPayload;
   updateAgent?: Maybe<Agent>;
-  updateDocument?: Maybe<Document>;
+  updateDocumentStatus?: Maybe<Document>;
   updateMedication?: Maybe<Medication>;
   updateUser?: Maybe<User>;
 };
@@ -130,7 +130,7 @@ export type MutationUpdateAgentArgs = {
 };
 
 
-export type MutationUpdateDocumentArgs = {
+export type MutationUpdateDocumentStatusArgs = {
   id: Scalars['ID'];
   status?: InputMaybe<DocumentStatus>;
 };
@@ -338,7 +338,7 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   deleteUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationDeleteUserArgs, 'id'>>;
   login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
   updateAgent?: Resolver<Maybe<ResolversTypes['Agent']>, ParentType, ContextType, RequireFields<MutationUpdateAgentArgs, 'id'>>;
-  updateDocument?: Resolver<Maybe<ResolversTypes['Document']>, ParentType, ContextType, RequireFields<MutationUpdateDocumentArgs, 'id'>>;
+  updateDocumentStatus?: Resolver<Maybe<ResolversTypes['Document']>, ParentType, ContextType, RequireFields<MutationUpdateDocumentStatusArgs, 'id'>>;
   updateMedication?: Resolver<Maybe<ResolversTypes['Medication']>, ParentType, ContextType, RequireFields<MutationUpdateMedicationArgs, 'id' | 'input'>>;
   updateUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'id' | 'input'>>;
 };
