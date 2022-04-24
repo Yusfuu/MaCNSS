@@ -3,6 +3,7 @@ import { IMedication, Medication } from '@schema/Medication/model';
 import { IUser } from '@schema/User/model';
 import { Document } from './model';
 import { DocumentStatus } from '@ts/enums';
+import { createPdfDocument } from 'document';
 
 export const resolvers: Resolvers = {
   Query: {
@@ -29,7 +30,7 @@ export const resolvers: Resolvers = {
       return documents.deletedCount;
     },
     approveDocument: async (_, { id }) => {
-      const document = await Document.findById(id);
+      const document = await Document.findById(id).populate('medication user');
 
       if (!document) {
         throw new Error('Document not found');
@@ -39,11 +40,7 @@ export const resolvers: Resolvers = {
         return document;
       }
 
-      const meds = await Medication.find({
-        _id: { $in: document.medication },
-      });
-
-      const balanceDue = meds.reduce((acc, cur) => {
+      const balanceDue = document.medication.reduce((acc, cur) => {
         if (cur.refundable) {
           const percent = cur.refundablePercent;
           const refund = (cur.price * percent) / 100;
@@ -52,11 +49,15 @@ export const resolvers: Resolvers = {
         return acc;
       }, 0);
 
+      console.log(balanceDue);
+
       const updatedDocument = await Document.findByIdAndUpdate(
         id,
         { status: DocumentStatus.APPROVED, balanceDue },
         { new: true }
       );
+
+      createPdfDocument(document).then(() => {});
 
       return updatedDocument;
     },
