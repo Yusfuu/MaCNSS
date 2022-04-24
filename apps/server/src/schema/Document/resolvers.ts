@@ -49,8 +49,6 @@ export const resolvers: Resolvers = {
         return acc;
       }, 0);
 
-      console.log(balanceDue);
-
       const updatedDocument = await Document.findByIdAndUpdate(
         id,
         { status: DocumentStatus.APPROVED, balanceDue },
