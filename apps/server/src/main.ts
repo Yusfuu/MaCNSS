@@ -7,10 +7,10 @@ const schema = applyMiddleware(gql, permissions);
 
 bootstrap(schema);
 
-import { faker } from '@faker-js/faker';
-import { User } from '@schema/User/model';
-import { Medication } from '@schema/Medication/model';
-import { Document } from '@schema/Document/model';
+// import { faker } from '@faker-js/faker';
+// import { User } from '@schema/User/model';
+// import { Medication } from '@schema/Medication/model';
+// import { Document } from '@schema/Document/model';
 
 // const insert = async () => {
 //   await Promise.all([
