@@ -1,0 +1,150 @@
+<html>
+
+<head>
+
+  <style>
+    .invoice-box {
+      margin: auto;
+      padding: 30px;
+      font-size: 18px;
+      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      color: #555;
+    }
+
+    .invoice-box table {
+      width: 100%;
+      line-height: inherit;
+      text-align: left;
+    }
+
+    .invoice-box table td {
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2) {
+      text-align: right;
+    }
+
+    .invoice-box table tr.top table td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+      font-size: 45px;
+      line-height: 45px;
+      color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+      padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+      border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+      border-top: 2px solid #eee;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <img src="https://www.macnss.ma/Portail_cnss/assets/images/icon.png"
+                  style="width: 100%; max-width: 200px" />
+              </td>
+
+              <td>
+                Invoice #: 123<br />
+                Created: <%=Intl.DateTimeFormat().format(new Date)%><br />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                <%= data.user.phone %><br />
+                  <%= data.user.city %><br />
+                    <%= data.user.address %>
+              </td>
+
+              <td>
+                <%= data.user.cin %><br />
+                  <%= data.user.name %><br />
+                    <%= data.user.email %>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>Payment Method</td>
+
+        <td>Check #</td>
+      </tr>
+
+      <tr class="details">
+        <td>Check</td>
+
+        <td>
+          <%= data.balanceDue %>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>Item</td>
+        <td>Price</td>
+      </tr>
+
+      <% data.medication.forEach(function(med){ %>
+        <% if (med.refundable) { %>
+          <tr class="item">
+            <td>
+              <%= med.name %>
+            </td>
+            <td>
+              $<%= med.price %>(<%= med.refundablePercent %>%)
+            </td>
+          </tr>
+          <% } %>
+            <% }); %>
+
+              <tr class="total">
+                <td></td>
+                <td>Total: $<%= data.balanceDue %>
+                </td>
+              </tr>
+    </table>
+  </div>
+</body>
+
+</html>
