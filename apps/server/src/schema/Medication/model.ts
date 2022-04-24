@@ -1,3 +1,4 @@
+import { RefundType } from '@ts/enums';
 import { Schema, model } from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
@@ -6,7 +7,7 @@ export interface IMedication {
   name: string;
   price: number;
   refundable: boolean;
-  refundType: string;
+  refundType: RefundType;
 }
 
 // 2. Create a Schema corresponding to the document interface.
@@ -15,6 +16,11 @@ const schema = new Schema<IMedication>(
     name: { type: String, required: true },
     price: { type: Number, required: true, min: 0, default: 0 },
     refundable: { type: Boolean, required: true, default: false },
+    refundType: {
+      type: String,
+      required: true,
+      default: RefundType.A,
+    },
   },
   { timestamps: true }
 );
