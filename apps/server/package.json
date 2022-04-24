@@ -11,10 +11,10 @@
     "monit": "pm2 monit",
     "gen": "graphql-codegen --watch src/schema/**/typeDefs.ts",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "seed": "tsnode ./src/seed.ts"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.2.0",
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/merge": "^8.2.8",
     "@graphql-tools/schema": "^8.3.8",
@@ -39,6 +39,7 @@
     "pm2": "^5.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.2.0",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.8",
     "@graphql-codegen/typescript-resolvers": "^2.6.1",
