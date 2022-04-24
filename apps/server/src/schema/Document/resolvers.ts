@@ -44,7 +44,12 @@ export const resolvers: Resolvers = {
       });
 
       const balanceDue = meds.reduce((acc, cur) => {
-        return cur.refundable ? acc + cur.price : acc;
+        if (cur.refundable) {
+          const percent = cur.refundablePercent;
+          const refund = (cur.price * percent) / 100;
+          return acc + refund;
+        }
+        return acc;
       }, 0);
 
       const updatedDocument = await Document.findByIdAndUpdate(
