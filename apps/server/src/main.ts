@@ -21,6 +21,7 @@ bootstrap(schema);
 //   // insert 10 users
 //   const data = [];
 //   for (let i = 0; i < 10; i++) {
+//     const refundable = faker.random.boolean();
 //     data.push(
 //       User.create({
 //         name: faker.name.findName(),
@@ -33,8 +34,8 @@ bootstrap(schema);
 //       Medication.create({
 //         name: faker.lorem.slug(),
 //         price: faker.commerce.price(100, 200, 2),
-//         refundable: faker.datatype.boolean(),
-//         refundType: ['A', 'B', 'C'][(3 * Math.random()) | 0],
+//         refundable: refundable,
+//         refundablePercent: refundable ? faker.datatype.float({ max: 60 }) : 0,
 //       })
 //     );
 //   }

@@ -8,9 +8,3 @@ export enum DocumentStatus {
   APPROVED = 'APPROVED',
   REJECTED = 'REJECTED',
 }
-
-export enum RefundType {
-  A = 'A',
-  B = 'B',
-  C = 'C',
-}

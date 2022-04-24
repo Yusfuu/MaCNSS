@@ -47,8 +47,8 @@ export type Medication = {
   id: Scalars['ID'];
   name: Scalars['String'];
   price: Scalars['Float'];
-  refundType: RefundType;
   refundable: Scalars['Boolean'];
+  refundablePercent: Scalars['Float'];
 };
 
 export type MedicationInput = {
@@ -187,12 +187,6 @@ export type QueryUserArgs = {
   id: Scalars['ID'];
 };
 
-export enum RefundType {
-  A = 'A',
-  B = 'B',
-  C = 'C'
-}
-
 export type User = {
   __typename?: 'User';
   address: Scalars['String'];
@@ -294,7 +288,6 @@ export type ResolversTypes = {
   MedicationInput: MedicationInput;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
-  RefundType: RefundType;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
   UserInput: UserInput;
@@ -347,8 +340,8 @@ export type MedicationResolvers<ContextType = Context, ParentType extends Resolv
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   price?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
-  refundType?: Resolver<ResolversTypes['RefundType'], ParentType, ContextType>;
   refundable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  refundablePercent?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

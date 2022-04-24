@@ -2,18 +2,12 @@ import { gql } from 'apollo-server-express';
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
-  enum RefundType {
-    A
-    B
-    C
-  }
-
   type Medication {
     id: ID!
     name: String!
     price: Float!
     refundable: Boolean!
-    refundType: RefundType!
+    refundablePercent: Float!
   }
 
   type Query {
