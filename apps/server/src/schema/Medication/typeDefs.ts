@@ -6,7 +6,6 @@ export const typeDefs = gql`
     A
     B
     C
-    D
   }
 
   type Medication {

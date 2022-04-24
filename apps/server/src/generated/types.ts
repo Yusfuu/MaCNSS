@@ -177,8 +177,7 @@ export type QueryUserArgs = {
 export enum RefundType {
   A = 'A',
   B = 'B',
-  C = 'C',
-  D = 'D'
+  C = 'C'
 }
 
 export type User = {
