@@ -9,6 +9,7 @@ export interface IDocument {
   user: IUser;
   medication: IMedication[];
   status: DocumentStatus;
+  balanceDue: number;
 }
 
 // 2. Create a Schema corresponding to the Document interface.
@@ -28,6 +29,11 @@ const schema = new Schema<IDocument>(
       type: String,
       enum: DocumentStatus,
       default: DocumentStatus.PENDING,
+      required: true,
+    },
+    balanceDue: {
+      type: Number,
+      default: 0,
       required: true,
     },
   },

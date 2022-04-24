@@ -1,5 +1,5 @@
 import type { Resolvers } from '@generated/types';
-import { IMedication } from '@schema/Medication/model';
+import { IMedication, Medication } from '@schema/Medication/model';
 import { IUser } from '@schema/User/model';
 import { Document } from './model';
 
@@ -16,12 +16,24 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     createDocument: async (_, { user, medication }) => {
-      const document = await Document.create({ user, medication });
+      const meds = await Medication.find({ _id: { $in: medication } });
+
+      const balanceDue = meds.reduce((acc, cur) => {
+        return cur.refundable ? acc + cur.price : acc;
+      }, 0);
+
+      const document = await Document.create({ user, medication, balanceDue });
+
       return document;
     },
     deleteDocument: async (_, { id }) => {
       const document = await Document.findByIdAndDelete(id);
       return document;
+    },
+    bulkDeleteDocuments: async (_, { ids }) => {
+      const documents = await Document.deleteMany({ _id: { $in: ids } });
+
+      return documents.deletedCount;
     },
     updateDocumentStatus: async (_, { id, status }) => {
       const document = await Document.findByIdAndUpdate(id, { status });

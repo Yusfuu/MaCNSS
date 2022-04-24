@@ -33,6 +33,7 @@ export type AuthPayload = {
 
 export type Document = {
   __typename?: 'Document';
+  balanceDue: Scalars['Float'];
   id: Scalars['ID'];
   medication: Array<Medication>;
   status: DocumentStatus;
@@ -58,6 +59,7 @@ export type MedicationInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  bulkDeleteDocuments?: Maybe<Scalars['Int']>;
   createAgent?: Maybe<Agent>;
   createDocument?: Maybe<Document>;
   createMedication?: Maybe<Medication>;
@@ -71,6 +73,11 @@ export type Mutation = {
   updateDocumentStatus?: Maybe<Document>;
   updateMedication?: Maybe<Medication>;
   updateUser?: Maybe<User>;
+};
+
+
+export type MutationBulkDeleteDocumentsArgs = {
+  ids: Array<Scalars['ID']>;
 };
 
 
@@ -276,6 +283,7 @@ export type ResolversTypes = {
   DocumentStatus: DocumentStatus;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Medication: ResolverTypeWrapper<Medication>;
   MedicationInput: MedicationInput;
   Mutation: ResolverTypeWrapper<{}>;
@@ -294,6 +302,7 @@ export type ResolversParentTypes = {
   Document: Document;
   Float: Scalars['Float'];
   ID: Scalars['ID'];
+  Int: Scalars['Int'];
   Medication: Medication;
   MedicationInput: MedicationInput;
   Mutation: {};
@@ -318,6 +327,7 @@ export type AuthPayloadResolvers<ContextType = Context, ParentType extends Resol
 };
 
 export type DocumentResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Document'] = ResolversParentTypes['Document']> = {
+  balanceDue?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   medication?: Resolver<Array<ResolversTypes['Medication']>, ParentType, ContextType>;
   status?: Resolver<ResolversTypes['DocumentStatus'], ParentType, ContextType>;
@@ -337,6 +347,7 @@ export type MedicationResolvers<ContextType = Context, ParentType extends Resolv
 };
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  bulkDeleteDocuments?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, RequireFields<MutationBulkDeleteDocumentsArgs, 'ids'>>;
   createAgent?: Resolver<Maybe<ResolversTypes['Agent']>, ParentType, ContextType, RequireFields<MutationCreateAgentArgs, 'email' | 'name' | 'password'>>;
   createDocument?: Resolver<Maybe<ResolversTypes['Document']>, ParentType, ContextType, RequireFields<MutationCreateDocumentArgs, 'medication' | 'user'>>;
   createMedication?: Resolver<Maybe<ResolversTypes['Medication']>, ParentType, ContextType, RequireFields<MutationCreateMedicationArgs, 'input'>>;

@@ -34,6 +34,7 @@ bootstrap(schema);
 //         name: faker.lorem.slug(),
 //         price: faker.commerce.price(100, 200, 2),
 //         refundable: faker.datatype.boolean(),
+//         refundType: ['A', 'B', 'C'][(3 * Math.random()) | 0],
 //       })
 //     );
 //   }

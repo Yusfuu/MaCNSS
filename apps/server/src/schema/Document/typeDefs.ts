@@ -13,6 +13,7 @@ export const typeDefs = gql`
     user: User!
     medication: [Medication!]!
     status: DocumentStatus!
+    balanceDue: Float!
   }
 
   type Query {
@@ -24,5 +25,6 @@ export const typeDefs = gql`
     createDocument(user: ID!, medication: [ID!]!): Document
     updateDocumentStatus(id: ID!, status: DocumentStatus!): Document
     deleteDocument(id: ID!): Document
+    bulkDeleteDocuments(ids: [ID!]!): Int
   }
 `;
