@@ -26,5 +26,6 @@ export const typeDefs = gql`
     updateDocumentStatus(id: ID!, status: DocumentStatus!): Document
     deleteDocument(id: ID!): Document
     bulkDeleteDocuments(ids: [ID!]!): Int
+    approveDocument(id: ID!): Document
   }
 `;

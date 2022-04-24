@@ -59,6 +59,7 @@ export type MedicationInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  approveDocument?: Maybe<Document>;
   bulkDeleteDocuments?: Maybe<Scalars['Int']>;
   createAgent?: Maybe<Agent>;
   createDocument?: Maybe<Document>;
@@ -73,6 +74,11 @@ export type Mutation = {
   updateDocumentStatus?: Maybe<Document>;
   updateMedication?: Maybe<Medication>;
   updateUser?: Maybe<User>;
+};
+
+
+export type MutationApproveDocumentArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -347,6 +353,7 @@ export type MedicationResolvers<ContextType = Context, ParentType extends Resolv
 };
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  approveDocument?: Resolver<Maybe<ResolversTypes['Document']>, ParentType, ContextType, RequireFields<MutationApproveDocumentArgs, 'id'>>;
   bulkDeleteDocuments?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, RequireFields<MutationBulkDeleteDocumentsArgs, 'ids'>>;
   createAgent?: Resolver<Maybe<ResolversTypes['Agent']>, ParentType, ContextType, RequireFields<MutationCreateAgentArgs, 'email' | 'name' | 'password'>>;
   createDocument?: Resolver<Maybe<ResolversTypes['Document']>, ParentType, ContextType, RequireFields<MutationCreateDocumentArgs, 'medication' | 'user'>>;
