@@ -11,8 +11,7 @@
     "monit": "pm2 monit",
     "gen": "graphql-codegen --watch src/schema/**/typeDefs.ts",
     "test": "jest",
-    "test:cov": "jest --coverage",
-    "seed": "tsnode ./src/seed.ts"
+    "test:cov": "jest --coverage"
   },
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
